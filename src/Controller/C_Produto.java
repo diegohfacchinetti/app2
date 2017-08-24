@@ -83,7 +83,7 @@ public class C_Produto {
     
     public List<Object[]> consulta(){
         EntityManager em = new JPAUtil().getEntityManager();
-        Query q = em.createNativeQuery("select * from produto");
+        Query q = em.createNativeQuery("select * from produto order by des_prod");
         List<Object[]> produtos = q.getResultList();
         return produtos;
     }

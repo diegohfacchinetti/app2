@@ -6,9 +6,15 @@
             <file>file:/C:/Users/1513%20IRON/Documents/NetBeansProjects/app2/src/Controller/C_Produto.java</file>
             <file>file:/C:/Users/1513%20IRON/Documents/NetBeansProjects/app2/src/Controller/C_Fornecedor.java</file>
             <file>file:/C:/Users/1513%20IRON/Documents/NetBeansProjects/app2/src/Controller/C_Compras.java</file>
+            <file>file:/C:/Users/1513%20IRON/Documents/NetBeansProjects/app2/src/View/V_Produto.java</file>
+            <file>file:/C:/Users/1513%20IRON/Documents/NetBeansProjects/app2/src/View/V_Produto_Listar.java</file>
+            <file>file:/C:/Users/1513%20IRON/Documents/NetBeansProjects/app2/src/View/V_Produto_Atualizacao.java</file>
             <file>file:/C:/Users/1513%20IRON/Documents/NetBeansProjects/app2/src/Util/JPAUtil.java</file>
             <file>file:/C:/Users/1513%20IRON/Documents/NetBeansProjects/app2/src/Controller/C_ItensCompra.java</file>
             <file>file:/C:/Users/1513%20IRON/Documents/NetBeansProjects/app2/src/META-INF/persistence.xml</file>
+            <file>file:/C:/Users/1513%20IRON/Documents/NetBeansProjects/app2/src/DAO/Produto.java</file>
+            <file>file:/C:/Users/1513%20IRON/Documents/NetBeansProjects/app2/src/aplicacao2/Aplicacao2.java</file>
+            <file>file:/C:/Users/1513%20IRON/Documents/NetBeansProjects/app2/src/DAO/Fornecedor.java</file>
         </group>
     </open-files>
 </project-private>
