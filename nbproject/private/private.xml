@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/work/faculdade/semestre_8/Integracao/trabalho/app2/src/View/V_Produto.java</file>
             <file>file:/C:/work/faculdade/semestre_8/Integracao/trabalho/app2/src/Controller/C_Produto.java</file>
             <file>file:/C:/work/faculdade/semestre_8/Integracao/trabalho/app2/src/DAO/Fornecedor.java</file>
@@ -11,6 +12,13 @@
             <file>file:/C:/work/faculdade/semestre_8/Integracao/trabalho/app2/src/View/V_Produto_Atualizacao.java</file>
             <file>file:/C:/work/faculdade/semestre_8/Integracao/trabalho/app2/src/Controller/C_Fornecedor.java</file>
             <file>file:/C:/work/faculdade/semestre_8/Integracao/trabalho/app2/src/View/V_Fornecedor.java</file>
+=======
+            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/app2.2/app2/src/View/V_Produto.java</file>
+            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/app2.2/app2/src/View/V_Produto_Listar.java</file>
+            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/app2.2/app2/src/View/V_Produto_Atualizacao.java</file>
+            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/app2.2/app2/src/View/V_Compras_Atualizacao.java</file>
+            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/app2.2/app2/src/View/V_Compras_Listar.java</file>
+>>>>>>> e717926b69f3309ae6e5ebd75598765d5de57565
         </group>
     </open-files>
 </project-private>
