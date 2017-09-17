@@ -8,6 +8,7 @@ package View;
 import Controller.C_Compras;
 import Controller.C_Fornecedor;
 import DAO.Compras;
+import MainView.MainView;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -26,6 +27,16 @@ public class V_Compras_Atualizacao extends javax.swing.JFrame {
      */
     public V_Compras_Atualizacao() {
         initComponents();
+        populaJcb();
+    }
+    
+    public void populaJcb(){
+        C_Fornecedor cf = new C_Fornecedor();  
+            List<Object[]> fornecedores = cf.consulta();
+            for(Object[] fornecedor:  fornecedores){  
+                String inf = new String(fornecedor[0]+" "+fornecedor[1]);
+                jComboBoxComprasIDFornecedor.addItem(inf);
+            }
     }
 
     /**
@@ -65,7 +76,6 @@ public class V_Compras_Atualizacao extends javax.swing.JFrame {
 
         jLabel3.setText("Id Fornecedor");
 
-        jComboBoxComprasIDFornecedor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxComprasIDFornecedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxComprasIDFornecedorActionPerformed(evt);
@@ -84,6 +94,11 @@ public class V_Compras_Atualizacao extends javax.swing.JFrame {
         });
 
         ButtonComprasSair.setText("Sair");
+        ButtonComprasSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonComprasSairActionPerformed(evt);
+            }
+        });
 
         ButtonComprasExcluir.setText("Excluir");
         ButtonComprasExcluir.addActionListener(new java.awt.event.ActionListener() {
@@ -174,12 +189,7 @@ public class V_Compras_Atualizacao extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextCompraNumNotaActionPerformed
 
     private void jComboBoxComprasIDFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxComprasIDFornecedorActionPerformed
-        C_Fornecedor cf = new C_Fornecedor();  
-            List<Object[]> fornecedores = cf.consulta();
-            for(Object[] fornecedor:  fornecedores){  
-                String inf = new String(fornecedor[0]+" "+fornecedor[1]);
-                jComboBoxComprasIDFornecedor.addItem(inf);
-            }
+        
     }//GEN-LAST:event_jComboBoxComprasIDFornecedorActionPerformed
 
     private void ButtonComprasSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonComprasSalvarActionPerformed
@@ -215,6 +225,12 @@ public class V_Compras_Atualizacao extends javax.swing.JFrame {
     private void jTextComprasIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextComprasIDActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextComprasIDActionPerformed
+
+    private void ButtonComprasSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonComprasSairActionPerformed
+        // TODO add your handling code here:
+        MainView.main(new String[0]);
+        this.dispose();
+    }//GEN-LAST:event_ButtonComprasSairActionPerformed
 
     /**
      * @param args the command line arguments

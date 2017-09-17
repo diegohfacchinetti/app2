@@ -8,6 +8,9 @@ package View;
 import Controller.C_Compras;
 import Controller.C_Fornecedor;
 import DAO.Compras;
+import MainView.MainView;
+import Util.FormataData;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -26,6 +29,16 @@ public class V_Compras extends javax.swing.JFrame {
      */
     public V_Compras() {
         initComponents();
+        populaJcb();
+    }
+
+    public void populaJcb() {
+        C_Fornecedor cf = new C_Fornecedor();
+        List<Object[]> fornecedores = cf.consulta();
+        for (Object[] fornecedor : fornecedores) {
+            String inf = new String(fornecedor[0] + " " + fornecedor[1]);
+            jComboBoxComprasIDFornecedor.addItem(inf);
+        }
     }
 
     /**
@@ -62,7 +75,6 @@ public class V_Compras extends javax.swing.JFrame {
 
         jLabel3.setText("Id Fornecedor");
 
-        jComboBoxComprasIDFornecedor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxComprasIDFornecedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxComprasIDFornecedorActionPerformed(evt);
@@ -71,9 +83,14 @@ public class V_Compras extends javax.swing.JFrame {
 
         jLabel4.setText("Data Compra");
 
-        jTextComprasData.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+        jTextComprasData.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(FormataData.getFormataData()));
+        jTextComprasData.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextComprasDataActionPerformed(evt);
+            }
+        });
 
-        ButtonComprasSalvar.setText("Salvar");
+        ButtonComprasSalvar.setText("Próximo");
         ButtonComprasSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ButtonComprasSalvarActionPerformed(evt);
@@ -81,6 +98,11 @@ public class V_Compras extends javax.swing.JFrame {
         });
 
         ButtonComprasSair.setText("Sair");
+        ButtonComprasSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonComprasSairActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -141,36 +163,62 @@ public class V_Compras extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextCompraNumNotaActionPerformed
 
     private void jComboBoxComprasIDFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxComprasIDFornecedorActionPerformed
-        C_Fornecedor cf = new C_Fornecedor();  
-            List<Object[]> fornecedores = cf.consulta();
-            for(Object[] fornecedor:  fornecedores){  
-                String inf = new String(fornecedor[0]+" "+fornecedor[1]);
-                jComboBoxComprasIDFornecedor.addItem(inf);
-            }
+        C_Fornecedor cf = new C_Fornecedor();
+        List<Object[]> fornecedores = cf.consulta();
+        for (Object[] fornecedor : fornecedores) {
+            String inf = new String(fornecedor[0] + " " + fornecedor[1]);
+            jComboBoxComprasIDFornecedor.addItem(inf);
+        }
     }//GEN-LAST:event_jComboBoxComprasIDFornecedorActionPerformed
 
     private void ButtonComprasSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonComprasSalvarActionPerformed
-        Compras c = new Compras();        
+        Compras c = new Compras();
         c.setNumNota(jTextCompraNumNota.getText());
         //pegando o id
-        String forn = (String)jComboBoxComprasIDFornecedor.getSelectedItem();
+        String forn = (String) jComboBoxComprasIDFornecedor.getSelectedItem();
         String[] vetor = forn.split(" ");
         Integer id = Integer.parseInt(vetor[0]);
         c.setIdForn(id);
         //Isso foi o mais perto que eu achei para converter data, naõ sei se está certo.
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        /*SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
         sdf.setLenient(false);
         Date d = null;
         try {
             d = sdf.parse(jTextComprasData.getText());
         } catch (ParseException ex) {
             Logger.getLogger(V_Compras.class.getName()).log(Level.SEVERE, null, ex);
+        }*/
+        DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        
+        Date d = null;
+        try {
+            d = jTextComprasData.getValue() != null ? format.parse(jTextComprasData.getText()) : null;
+            
+        } catch (ParseException ex) {
+            Logger.getLogger(V_Compras.class.getName()).log(Level.SEVERE, null, ex);
         }
         c.setDataCompra(d);
-        
+
         C_Compras cc = new C_Compras();
         cc.salvar(c);
+        List<Object[]> prods = cc.consulta();
+        
+        //O animal completa dps
+        //linkar com cadastro dos itens da compra
+        V_ItensCompra.setIdCompras(prods.size());
+        V_ItensCompra.main(new String[0]);
+        
     }//GEN-LAST:event_ButtonComprasSalvarActionPerformed
+
+    private void ButtonComprasSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonComprasSairActionPerformed
+        // TODO add your handling code here:
+        MainView.main(new String[0]);
+        this.dispose();
+    }//GEN-LAST:event_ButtonComprasSairActionPerformed
+
+    private void jTextComprasDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextComprasDataActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextComprasDataActionPerformed
 
     /**
      * @param args the command line arguments

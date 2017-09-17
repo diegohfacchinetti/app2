@@ -6,6 +6,7 @@
 package View;
 
 import Controller.C_Compras;
+import MainView.MainView;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -37,7 +38,7 @@ public class V_Compras_Listar extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Listar Compras");
 
@@ -96,6 +97,8 @@ public class V_Compras_Listar extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        MainView.main(new String[0]);
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
       public void limpaTabela(){
         while(((DefaultTableModel)this.jTable1.getModel()).getRowCount()> 0){

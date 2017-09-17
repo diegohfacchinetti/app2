@@ -7,6 +7,7 @@ package View;
 
 import Controller.C_Fornecedor;
 import DAO.Fornecedor;
+import MainView.MainView;
 import java.math.BigDecimal;
 
 /**
@@ -70,6 +71,11 @@ public class V_Fornecedor extends javax.swing.JFrame {
         jLabel6.setText("Telefone");
 
         jbtnSair.setText("Sair");
+        jbtnSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnSairActionPerformed(evt);
+            }
+        });
 
         jbtnSalvar.setText("Salvar");
         jbtnSalvar.addActionListener(new java.awt.event.ActionListener() {
@@ -236,6 +242,12 @@ public class V_Fornecedor extends javax.swing.JFrame {
     private void jbtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnExcluirActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jbtnExcluirActionPerformed
+
+    private void jbtnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSairActionPerformed
+        // TODO add your handling code here:
+        MainView.main(new String[0]);
+        this.dispose();
+    }//GEN-LAST:event_jbtnSairActionPerformed
 
     /**
      * @param args the command line arguments

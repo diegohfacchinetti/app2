@@ -7,7 +7,10 @@ package View;
 
 import Controller.C_ItensCompra;
 import Controller.C_Produto;
+import DAO.ItensCompra;
+import MainView.MainView;
 import java.awt.Frame;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -24,10 +27,13 @@ public class V_ItensCompra_Atualizar extends javax.swing.JFrame {
     private static String qtd;
     private static String preco;
     private static String total;
+    private static int idProd;
     int i;
+    C_Produto cc = new C_Produto();
+    ArrayList<ItensCompra> todosItem = new ArrayList<ItensCompra>();
     
-    public static void ADDIten(String prod1, String qtd1, String preco1, String total1){
-        
+    public static void ADDIten(String prod1, String qtd1, String preco1, String total1,int idProd1){
+        idProd = idProd1;
         qtd = qtd1;
         preco = preco1;
         prod = prod1;
@@ -43,6 +49,7 @@ public class V_ItensCompra_Atualizar extends javax.swing.JFrame {
      */
     public V_ItensCompra_Atualizar() {
         initComponents();
+        prencheTabela();
     }
     
     
@@ -58,10 +65,32 @@ public class V_ItensCompra_Atualizar extends javax.swing.JFrame {
     public void prencheRow(){
             removeRow(i);
             ((DefaultTableModel)this.jTable1.getModel()).insertRow(i, new Object[]{prod,preco,qtd,total});
-            
+            ItensCompra item = new ItensCompra();
+            item.setIdCompra(idCompras);
+            item.setQtd(Integer.parseInt(qtd));
+            item.setValor(Double.parseDouble(preco));
+            item.setIdProd(idProd);
+            todosItem.add(item);
             
     }
     
+    public void prencheTabela(){
+            this.limpaTabela();
+            C_ItensCompra ic = new C_ItensCompra();
+            
+            List<Object[]>lista = ic.consultaIdCompra(idCompras);
+            
+            for(Object[] item : lista){
+                ((DefaultTableModel)this.jTable1.getModel()).addRow(
+                 new Object[]{
+                     item[1],
+                     item[2],
+                     item[3],
+                     item[4]    
+                 }
+                );
+            }
+    }
     
     
     
@@ -83,7 +112,7 @@ public class V_ItensCompra_Atualizar extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Itens da Compra");
 
@@ -183,15 +212,20 @@ public class V_ItensCompra_Atualizar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-     i = jTable1.getSelectedRow();  
-     ATT_IC add = new ATT_IC();
-     add.setVisible(true);
+     i = jTable1.getSelectedRow();
+     if(total!= null){
+        prencheRow();
+        total = null;
+        
+     }
+     ATT_IC_.main(new String[0]);
      this.update(getGraphics());
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         limpaTabela();
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        MainView.main(new String[0]);
+        this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -200,7 +234,11 @@ public class V_ItensCompra_Atualizar extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+        
+        
+        
+        MainView.main(new String[0]);
+        this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**

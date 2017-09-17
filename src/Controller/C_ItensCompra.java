@@ -87,6 +87,13 @@ public class C_ItensCompra {
         return itensCompra;
     }
     
+    public List<Object[]> consultaIdCompra(int id){
+        EntityManager em = new JPAUtil().getEntityManager();
+        Query q = em.createNativeQuery("select * from itens_Compra where id_compra = "+id);
+        List<Object[]> itensCompra = q.getResultList();
+        return itensCompra;
+    }
+    
     
     
     

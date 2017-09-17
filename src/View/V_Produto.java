@@ -8,6 +8,7 @@ package View;
 import Controller.C_Fornecedor;
 import Controller.C_Produto;
 import DAO.Produto;
+import MainView.MainView;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -22,6 +23,17 @@ public class V_Produto extends javax.swing.JFrame {
      */
     public V_Produto() {
         initComponents();
+        populaJcb();
+    }
+    
+    public void populaJcb(){
+        C_Fornecedor cf = new C_Fornecedor();  
+            List<Object[]> fornecedores = cf.consulta();
+            for(Object[] fornecedor:  fornecedores){  
+                String inf = new String(fornecedor[0]+" "+fornecedor[1]);
+                jComboBox1.addItem(inf);
+                //System.out.println(inf);
+            }
     }
 
     /**
@@ -76,7 +88,6 @@ public class V_Produto extends javax.swing.JFrame {
 
         jLabel6.setText("Fornecedor:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -95,6 +106,11 @@ public class V_Produto extends javax.swing.JFrame {
         });
 
         jButton2.setText("Sair");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -172,12 +188,8 @@ public class V_Produto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-            C_Fornecedor cf = new C_Fornecedor();  
-            List<Object[]> fornecedores = cf.consulta();
-            for(Object[] fornecedor:  fornecedores){  
-                String inf = new String(fornecedor[0]+" "+fornecedor[1]);
-                jComboBox1.addItem(inf);
-            }
+            
+            this.update(getGraphics());
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -189,14 +201,20 @@ public class V_Produto extends javax.swing.JFrame {
         //pegando o id
         String forn = (String)jComboBox1.getSelectedItem();
         String[] vetor = forn.split(" ");
-        /*Integer id = Integer.parseInt(vetor[0]);
-        p.setFornProd(id);*/
+        Integer id = Integer.parseInt(vetor[0]);
+        p.setFornProd(id);
         
         p.setEstoqueProd(Integer.parseInt(jTextPane5.getText()));
         
         C_Produto cp = new C_Produto();
         cp.salvar(p);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        MainView.main(new String[0]);
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
